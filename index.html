@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="+ lang +">
+<head>
+<meta charset="utf-8" content>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content>
+<meta name="keywords" content>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="theme-color" content="#00a3ad">
+<meta name="msapplication-navbutton-color" content="#00a3ad">
+<meta name="apple-mobile-web-app-status-bar-style" content="#00a3ad">
+<title>Calculez votre Zakat</title>
+<link href="static/bourget_static/css/fonts.css" rel="stylesheet" media="all" type="text/css">
+<link rel="stylesheet" href="static/CACHE/css/d8c171c109af.css" type="text/css">
+<link rel="stylesheet" href="static/CACHE/css/5dd24da86600.css" type="text/css" media="all">
+<link rel="stylesheet" href="static/CACHE/css/bd6ad57c6b0c.css" type="text/css">
+<script type="text/javascript" src="static/bourget_static/js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="static/bourget_static/js/common.js"></script>
+<script src="static/bourget_static/plugins/jquery-ui-1.12.1/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/bourget_static/js/jquery.ui.touch-punch.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<style>
+/*#regForm {
+	background-color: #ffffff;
+	margin: 100px auto;
+	font-family: Raleway;
+	padding: 40px;
+	width: 70%;
+	min-width: 300px;
+}*/
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+	background-color: #ffdddd;
+}
+/* Hide all steps by default: */
+.tab {
+	display: none;
+}
+button {
+	background-color: #fc1621;
+	color: #ffffff;
+	border: none;
+	padding: 10px 20px;
+	font-size: 17px;
+	font-family: Raleway;
+	cursor: pointer;
+}
+button:hover {
+	opacity: 1;
+}
+#prevBtn {
+	background-color: fc1621;
+}
+/* Make circles that indicate the steps of the form: */
+.step {
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color:#fc1621;
+	border: none;
+	border-radius: 50%;
+	display: inline-block;
+	opacity: 0.5;
+}
+.step.active {
+	opacity: 1;
+}
+/* Mark the steps that are finished and valid: */
+.step.finish {
+	background-color: #4CAF50;
+}
+</style>
+
+<body class="l-body">
+<div class="l-page" style="min-height: 100%">
+  <div class="l-page" style="min-height: 100%">
+    <section class="account container zakat__simulator simu_form">
+    <div class="row">
+      <div class="col-md-offset-1 col-md-10">
+        <div class="simulator__box">
+          <form id="form_2032"  name="form_2032" method="POST" action>
+            <div class="tab">
+              <p>
+                <input type="hidden" name="csrfmiddlewaretoken" value="dLRy4XwNvzD7jFyMjbsU2cz6bFIAlMWr">
+              <h1 text-align= "center">Estimer le montant de votre zakat avec ce simulateur</h1>
+              <div class="text-block nissab-config clearfix"> <a class="pull-right faa-parent animated-hover" id="nissab-btn">Choisir les paramètres pour le calcul (Nissab et calendrier)</i></a> </div>
+              <div class="bancaires-block" style="display: none" id="form_div_12">
+                <p class="total-info clearfix"> Paramètres </p>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_seuil_imposition" class="label-text">Cacul du  nissab en vous basant sur l'or ou l'argent</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-select"> <i class="icon ion-chevron-down"></i>
+                      <select class="form-control mod--theme simu__input" id="id_seuil_imposition" name="seuil_imposition">
+                        <option value="275.000000">275 &#xE2;&#x82;&#xAC; Nissab Argent</option>
+                        <option selected="selected" value="3124.000000">3124 &#xE2;&#x82;&#xAC; Nissab Or</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_taux_imposition" class="label-text">Calculez en se basant sur le calendrier solaire ou lunaire</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-select"> <i class="icon ion-chevron-down"></i>
+                      <select class="form-control mod--theme simu__input" id="id_taux_imposition" name="taux_imposition">
+                        <option selected="selected" value="2.5">2.5% lunaire</option>
+                        <option value="2.57">2.57% solaire</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </p>
+            </div>
+            <div class="tab">
+              <p>
+              <div id="form_div_2" class="bancaires-block dark">
+                <p class="total-info clearfix">
+                  <label for="form_total_2">Vos comptes en banque</label>
+                  <span class="pull-right">
+                  <input id="form_total_2" class type="text" name="soldes_bancaires_total" value="0">
+                  &#x20AC; </span> </p>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_soldes_bancaires_loyers_immo" class="label-text">Les loyers que vous percevez sur des biens immobiliers:</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_soldes_bancaires_loyers_immo" name="soldes_bancaires_loyers_immo" value="0">
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_soldes_bancaires_dividendes_placements" class="label-text">Les dividendes que vous percevez sur des placements long termes:</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_soldes_bancaires_dividendes_placements" name="soldes_bancaires_dividendes_placements" value="0">
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_soldes_bancaires_profits_dividendes" class="label-text">Les profits ou dividendes issus des investissements long termes:</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_soldes_bancaires_profits_dividendes" name="soldes_bancaires_profits_dividendes" value="0">
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_soldes_bancaires_autre" class="label-text">L'argent que vous avez à la banque (en dehors de ceux que vous avez dékà compté ci-dessus):</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_soldes_bancaires_autre" name="soldes_bancaires_autre" value="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </p>
+            </div>
+            <div class="tab">
+              <p>
+              <div class="bancaires-block dark">
+                <p class="total-info clearfix">
+                  <label for="form_total_3">Votre patrimoine immobilier</label>
+                  <span class="pull-right">
+                  <input id="form_total_3" type="text" name="patrimoine_immo_total" value="0">
+                  &#x20AC;</span> </p>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_patrimoine_immo_immeubles" class="label-text">Valeur des biens immobiliers achetés pour être revendus:</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_patrimoine_immo_immeubles" name="patrimoine_immo_immeubles" value="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bancaires-block ">
+                <p class="total-info clearfix">
+                  <label for="form_total_4">Votre patrimoine financier</label>
+                  <span class="pull-right">
+                  <input id="form_total_4" type="text" name="patrimoine_financier_total" value="0">
+                  &#x20AC;</span> </p>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_patrimoine_financier_bourse" class="label-text">Valeur des investissements en bourse (comptes titres, PEA, OPCVM...):</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_patrimoine_financier_bourse" name="patrimoine_financier_bourse" value="0">
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_patrimoine_financier_direct" class="label-text">Valeur des investissements en action (partipation dans une entreprise):</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_patrimoine_financier_direct" name="patrimoine_financier_direct" value="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </p>
+            </div>
+            <div class="tab">
+              <p>
+              <div class="bancaires-block dark">
+                <p class="total-info clearfix">
+                  <label for="form_total_5">Cash à disposition</label>
+                  <span class="pull-right">
+                  <input id="form_total_5" type="text" name="cash_total" value="0">
+                  &#x20AC;</span> </p>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_cash_dispo" class="label-text">L'argent liquide que vous avez:</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_cash_dispo" name="cash_dispo" value="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bancaires-block">
+                <p class="total-info clearfix">
+                  <label for="form_total_1">Valeur des matières précieuses</label>
+                  <span class="pull-right">
+                  <input id="form_total_1" type="text" name="matieres_precieuses_total" value="0">
+                  &#x20AC;</span> </p>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_matieres_precieuses_or" class="label-text">Valeur en or:</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_matieres_precieuses_or" name="matieres_precieuses_or" value="0">
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_matieres_precieuses_argent" class="label-text">Valeur en argent:</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_matieres_precieuses_argent" name="matieres_precieuses_argent" value="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </p>
+            </div>
+            <div class="tab">
+              <div class="bancaires-block">
+                <p class="total-info clearfix">
+                  <label for="form_total_6">Autres créances</label>
+                  <span class="pull-right">
+                  <input id="form_total_6" type="text" name="creances_total" value="0">
+                  &#x20AC;</span> </p>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_creances_montant_du" class="label-text">Montant que l'on vous doit :</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_creances_montant_du" name="creances_montant_du" value="0">
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_creances_autres_recettes" class="label-text">Autres recettes déjà prévues (remboursements certains ou paiements non parvenus):</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_creances_autres_recettes" name="creances_autres_recettes" value="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bancaires-block dark">
+                <p class="total-info clearfix">
+                  <label for="form_total_7">Vos dettes et dépenses</label>
+                  <span class="pull-right">
+                  <input id="form_total_7" type="text" name="dettes_total" value="0">
+                  &#x20AC;</span> </p>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_dettes_remboursable" class="label-text">Montant des dettes que vous remboursez chaque année:</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_dettes_remboursable" name="dettes_remboursable" value="0">
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_dettes_depenses" class="label-text">Montant de vos dépenses récurrentes (loyers, charges):</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_dettes_depenses" name="dettes_depenses" value="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+             <div class="tab">
+             <p>
+            <div class="text-block">
+                <div class="checkbox-mod light" style="margin-bottom: 0">
+                  <input id="id_user_type" name="user_type" type="checkbox">
+                  <label for="id_user_type">Vous êtes un Professionnel (entrepreneur, artisant, profession libéral etc...)</label>
+                </div>
+              </div>
+              <div class="bancaires-block block_zakat pro">
+                <p class="total-info clearfix">
+                  <label for="form_total_10">Immobilisations financières ou corporelles</label>
+                  <span class="pull-right">
+                  <input id="form_total_10" type="text" name="pro_immo_total" value="0">
+                  &#x20AC;</span> </p>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_pro_immo_placements" class="label-text">Montant des investissements, placements ou des prêts qui vous sont dûs;:</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_pro_immo_placements" name="pro_immo_placements" value="0">
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_pro_immo_immobilises" class="label-text">Montant des biens immobilisés en vue de leur valorisation en capital:</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_pro_immo_immobilises" name="pro_immo_immobilises" value="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bancaires-block block_zakat pro">
+                <p class="total-info clearfix">
+                  <label for="form_total_8">Votre trésorerie et vos créances</label>
+                  <span class="pull-right">
+                  <input id="form_total_8" type="text" name="pro_treso_total" value="0">
+                  &#x20AC;</span> </p>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_pro_treso_soldes_bancaires" class="label-text">Solde de vos comptes bancaires:</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_pro_treso_soldes_bancaires" name="pro_treso_soldes_bancaires" value="0">
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_pro_treso_soldes_creances" class="label-text">Solde des créances clients:</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_pro_treso_soldes_creances" name="pro_treso_soldes_creances" value="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bancaires-block dark block_zakat pro">
+                <p class="total-info clearfix">
+                  <label for="form_total_9">Valeur de vos stocks</label>
+                  <span class="pull-right">
+                  <input id="form_total_9" type="text" name="pro_stock_total" value="0">
+                  &#x20AC;</span> </p>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_pro_stock_fini" class="label-text">Montant des stocks de produits finis:</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_pro_stock_fini" name="pro_stock_fini" value="0">
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_pro_stock_non_fini" class="label-text">Montant des stocks de matières premières ou semi-finis:</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_pro_stock_non_fini" name="pro_stock_non_fini" value="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </p>
+             </div>
+            <div class="tab">
+              <p>
+              <div class="bancaires-block block_zakat pro">
+                <p class="total-info clearfix">
+                  <label for="form_total_10">Immobilisations financières ou corporelles</label>
+                  <span class="pull-right">
+                  <input id="form_total_10" type="text" name="pro_immo_total" value="0">
+                  &#x20AC;</span> </p>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_pro_immo_placements" class="label-text">Montant des investissements, placements ou des prêts qui vous sont dûs;:</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_pro_immo_placements" name="pro_immo_placements" value="0">
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_pro_immo_immobilises" class="label-text">Montant des biens immobilisés en vue de leur valorisation en capital:</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_pro_immo_immobilises" name="pro_immo_immobilises" value="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bancaires-block dark block_zakat pro">
+                <p class="total-info clearfix">
+                  <label for="form_total_11">Dettes professionnelles</label>
+                  <span class="pull-right">
+                  <input id="form_total_11" type="text" name="pro_dettes_total" value="0">
+                  &#x20AC;</span> </p>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_pro_dettes_long_terme" class="label-text">Montant des dettes long terme:</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_pro_dettes_long_terme" name="pro_dettes_long_terme" value="0">
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix simu__input-group">
+                  <div class="col-md-7">
+                    <label for="id_pro_dettes_moyen_terme" class="label-text">Montant des dettes court-moyen terme:</label>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                      <input class="form-control mod--theme simu__input" type="text" id="id_pro_dettes_moyen_terme" name="pro_dettes_moyen_terme" value="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="clearfix simu__input-group">
+                <div class="col-md-7">
+                  <label for="id_pro_dettes_depenses" class="label-text">Montant des dépenses récurrentes (loyers, charges):</label>
+                </div>
+                <div class="col-md-5">
+                  <div class="l-wrapp-input"> <span>&#x20AC;</span>
+                    <input class="form-control mod--theme simu__input" type="text" id="id_pro_dettes_depenses" name="pro_dettes_depenses" value="0">
+                  </div>
+                </div>
+              </div>
+              <div id="errors_2032" style="display:none;" class="alert alert-danger text-center"></div>
+              <div class="submit-wraper text-center">
+                <input id="id_montant_a_payer" type="hidden" name="montant_a_payer">
+                <button type="submit" class="btn btn-theme2 btn-lg faa-parent animated-hover">Cliquez pour connaitre le montant de votre Zakat </i></button>
+              </div>
+              </p>
+            </div>
+            <div style="overflow:auto;">
+              <div style="float:right; width: 100%;
+    text-align: right;">
+              <div class="bancaires-block">
+                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+              </div>
+              </div>
+            </div>
+            <!-- Circles which indicates the steps of the form: -->
+            <div style="text-align:center;margin-top:40px; display:none"> 
+            <span class="step"></span> 
+            <span class="step"></span> 
+            <span class="step"></span> 
+            <span class="step"></span>
+            <span class="step"></span> 
+            <span class="step"></span>
+            <span class="step"></span> </div>
+          </form>
+          <!-- RESULT-->
+          <div class="result-wraper">
+            <div class="result-block text-center">
+              <h2 id="montant_a_payer_show"> Estimation du montant à verser : <strong>0</strong></h2>
+              <p> <strong>Dont <span id="pro_pay_sum">0</span> à titre professionnel</strong><br>
+                <br>
+                Pour un patrimoine personnel de : <span id="pat_perso_sum">0</span> et un patrimoine professionnel de : <span id="pat_pro_sum">0</span><br>
+              </p>
+              <br>
+              <p> Ce simulateur vous donne une estimation de la Zakat que vous devez payé, il vous revient de vérifier si votre situation nécessite un conseil juridique</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+  <script>
+var currentTab = 0; // Current tab is set to be the first tab (0)
+showTab(currentTab); // Display the current tab
+
+function showTab(n) {
+  // This function will display the specified tab of the form...
+  var x = document.getElementsByClassName("tab");
+  x[n].style.display = "block";
+  //... and fix the Previous/Next buttons:
+  if (n == 0) {
+    document.getElementById("prevBtn").style.display = "none";
+  } else {
+    document.getElementById("prevBtn").style.display = "inline";
+  }
+  if (n == (x.length - 1)) {
+    document.getElementById("nextBtn").style.display = "none";
+  } else {
+    document.getElementById("nextBtn").innerHTML = "Next";
+  }
+   if (n == (x.length - 1)) {
+    document.getElementById("prevBtn").style.display = "none";
+  } 
+  //... and run a function that will display the correct step indicator:
+  fixStepIndicator(n)
+}
+
+function nextPrev(n) {
+  // This function will figure out which tab to display
+  var x = document.getElementsByClassName("tab");
+  // Exit the function if any field in the current tab is invalid:
+  if (n == 1 && !validateForm()) return false;
+  // Hide the current tab:
+  x[currentTab].style.display = "none";
+  // Increase or decrease the current tab by 1:
+  currentTab = currentTab + n;
+  // if you have reached the end of the form...
+  if (currentTab >= x.length) {
+    // ... the form gets submitted:
+    document.getElementById("form_2032").submit();
+    return false;
+  }
+  // Otherwise, display the correct tab:
+  showTab(currentTab);
+}
+
+function validateForm() {
+  // This function deals with validation of the form fields
+  var x, y, i, valid = true;
+  x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByTagName("input");
+  // A loop that checks every input field in the current tab:
+  for (i = 0; i < y.length; i++) {
+    // If a field is empty...
+    if (y[i].value == "") {
+      // add an "invalid" class to the field:
+      y[i].className += " invalid";
+      // and set the current valid status to false
+      valid = false;
+    }
+  }
+  // If the valid status is true, mark the step as finished and valid:
+  if (valid) {
+    document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+  return valid; // return the valid status
+}
+
+function fixStepIndicator(n) {
+  // This function removes the "active" class of all steps...
+  var i, x = document.getElementsByClassName("step");
+  for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace(" active", "");
+  }
+  //... and adds the "active" class on the current step:
+  x[n].className += " active";
+}
+</script> 
+  <script type="text/javascript">
+    $('body').addClass('account-page');
+    $('.simu__input-group .form-control').on('focus', function (event) {
+        $(this).parent().parent().parent().find('.label-text').css('color', 'black')
+    }).on('blur', function (event) {
+        $('.simu__input-group .label-text').css('color', '#9f9fa4');
+    })
+    $('#nissab-btn').on('click', function (event) {
+        event.preventDefault();
+        $('#form_div_12').toggle('slow');
+    })
+</script> 
+  <script type="text/javascript" src="static/bourget_static/js/simulator__form_submit.js"></script> 
+  <script type="text/javascript">
+    (function($) {
+        var pro_fields = ['id_pro_treso_total',
+            'id_pro_treso_soldes_bancaires',
+            'id_pro_treso_soldes_creances',
+            'id_pro_stock_total',
+            'id_pro_stock_fini',
+            'id_pro_stock_non_fini',
+            'id_pro_immo_total',
+            'id_pro_immo_placements',
+            'id_pro_immo_immobilises',
+            'id_pro_dettes_total',
+            'id_pro_dettes_long_terme',
+            'id_pro_dettes_moyen_terme',
+            'id_pro_dettes_prets',
+            'id_pro_dettes_depenses'];
+
+        function showPro(show) {
+            $(".pro").each(function(index) {
+                if(show) $(this).show();
+                else {
+                    $.each(pro_fields, function(index, value) {
+                        $('#' + value).attr('value', 0);
+                        $('#' + value).change();
+                    });
+                    $(this).hide();
+                }
+            });
+        }
+
+        function resetBlock(block) {
+            $.each(block, function(index, value) {
+                $('#' + value).val(0);
+            });
+        }
+
+        function updateTotal(total_id, block) {
+            total = 0;
+            $.each(block, function(index, value) {
+                val = $('#' + value).val().replace(',', '.');
+                $('#' + value).val(val);
+                total += parseFloat(val);
+            });
+            $('#' + total_id).val(total);
+            $('#' + total_id).parent().find('span').html(total+'€');
+            return total;
+        }
+
+        Array.prototype.has = function(val) {
+            for (i=0; i < this.length; i++) {
+                if(this[i] == val) return true;
+            }
+            return false;
+        }
+
+        String.prototype.startsWith = function(str) {
+            return (this.match("^"+str)==str)
+        }
+
+        $(document).ready(function() {
+            $('#id_montant_a_payer').attr("readonly", true);
+
+            var form_simu = $('#form_2032');
+            var result_simu = $('#result_2032');
+            var errors_simu = $('#errors_2032');
+            var table_simu = $('#table_2032');
+            var chart_simu = 'chart_2032';
+
+            form_simu.submit(function(event) {
+                event.preventDefault();
+                var total1 = 0;
+                var total2 = 0;
+                var patperso = 0;
+                var patpro = 0;
+                var detperso = 0;
+                var detpro = 0;
+                patperso += parseFloat($('#form_total_1').val());
+                patperso += parseFloat($('#form_total_2').val());
+                patperso += parseFloat($('#form_total_3').val());
+                patperso += parseFloat($('#form_total_4').val());
+                patperso += parseFloat($('#form_total_5').val());
+                patperso += parseFloat($('#form_total_6').val());
+                detperso += parseFloat($('#form_total_7').val());
+                patpro += parseFloat($('#form_total_8').val());
+                patpro += parseFloat($('#form_total_9').val());
+                patpro += parseFloat($('#form_total_10').val());
+                detpro += parseFloat($('#form_total_11').val());
+
+                total1 = patperso + patpro;
+                total2 = detperso + detpro;
+
+                var total = total1 - total2;
+
+                var seuil = parseFloat($('#id_seuil_imposition').val());
+                var taux = parseFloat($('#id_taux_imposition').val());
+                if (total1 == 0 && total2 == 0) {
+                    $('#id_montant_a_payer').val('0€');
+                    $('#montant_a_payer_show strong').text('0€');
+                    $('#input_4_1').val('0€');
+                    $('#partner_zakat').addClass('hide');
+                    return false;
+                }
+
+                var payer = total * taux / 100;
+                payer = payer.toFixed(2) - 0;
+                var payer_pro = ( parseFloat($('#form_total_8').val()) +  parseFloat($('#form_total_9').val()) +  parseFloat($('#form_total_10').val()) -  parseFloat($('#form_total_11').val()) ) * taux / 100;
+                payer_pro = payer_pro.toFixed(2) - 0;
+                var payer_perso = payer - payer_pro;
+                if (payer_pro > payer) {payer_pro = payer;} else if (payer_pro < 0) {payer_pro = 0;}
+                $('#pro_pay_sum').text(payer_pro+'€');
+                $('#pat_perso_sum').text((patperso - detperso)+'€');
+                $('#pat_pro_sum').text((patpro - detpro)+'€');
+                payer = Math.round(payer);
+                $('#id_montant_a_payer').val(payer);
+                $('#montant_a_payer_show strong').text(payer+'€');
+
+                if (payer > 0) {
+                    $('#input_4_1').val(payer);
+                    $('#partner_zakat').removeClass('hide');
+                }
+                else {
+                    $('#input_4_1').val('0');
+                    $('#partner_zakat').addClass('hide');
+                }
+
+                if (total < seuil) {
+                    $('#id_montant_a_payer').val("0");
+                    $('#montant_a_payer_show strong').text("0€");
+
+                    $('#input_4_1').val('0');
+                    $('#partner_zakat').addClass('hide');
+
+                    $('#pro_pay_sum').text("0€");
+                    $('#pat_pro_sum').text("0€");
+                    $('#pat_perso_sum').text("0€");
+                }
+
+                return form_simu_only_submit(form_simu, errors_simu, "/fr/simulator/zakat/2032/", true, true);
+
+            });
+
+            block_1 = ['id_matieres_precieuses_or',
+                'id_matieres_precieuses_argent'];
+            block_2 = ['id_soldes_bancaires_loyers_immo',
+                'id_soldes_bancaires_dividendes_placements',
+                'id_soldes_bancaires_profits_dividendes',
+                'id_soldes_bancaires_autre'];
+            block_3 = ['id_patrimoine_immo_immeubles'];
+            block_4 = ['id_patrimoine_financier_bourse',
+                'id_patrimoine_financier_direct'];
+            block_5 = ['id_cash_dispo'];
+            block_6 = ['id_creances_montant_du',
+                'id_creances_autres_recettes'];
+            block_7 = ['id_dettes_remboursable',
+                'id_dettes_depenses'];
+            block_8 = ['id_pro_treso_soldes_bancaires',
+                'id_pro_treso_soldes_creances'];
+            block_9 = ['id_pro_stock_fini',
+                'id_pro_stock_non_fini'];
+            block_10 = ['id_pro_immo_placements',
+                'id_pro_immo_immobilises'];
+            block_11 = ['id_pro_dettes_long_terme',
+                'id_pro_dettes_moyen_terme',
+                'id_pro_dettes_prets',
+                'id_pro_dettes_depenses'];
+
+            $(".simu_form input[type='text']").click(function() {
+                $(this).select();
+            });
+
+            $(".simu_form input[type='text']").focus(function() {
+                if ($(this).next().html() == '') return;
+
+                offset = $(this).offset();
+                t = offset.top;
+                l = offset.left + $(this).width() + 40;
+                $(this).next().animate({'top':t, 'left':l}, 0);
+                $(this).next().show();
+                $(this).focusout(function() {
+                    $(this).next().hide();
+                });
+            });
+
+            $(".simu_form input[type='text']").change(function() {
+                current = $(this).attr('id');
+                if (block_1.has(current)) updateTotal('form_total_1', block_1);
+                else if (block_2.has(current)) updateTotal('form_total_2', block_2);
+                else if (block_3.has(current)) updateTotal('form_total_3', block_3);
+                else if (block_4.has(current)) updateTotal('form_total_4', block_4);
+                else if (block_5.has(current)) updateTotal('form_total_5', block_5);
+                else if (block_6.has(current)) updateTotal('form_total_6', block_6);
+                else if (block_7.has(current)) updateTotal('form_total_7', block_7);
+                else if (block_8.has(current)) updateTotal('form_total_8', block_8);
+                else if (block_9.has(current)) updateTotal('form_total_9', block_9);
+                else if (block_10.has(current)) updateTotal('form_total_10', block_10);
+                else if (block_11.has(current)) updateTotal('form_total_11', block_11);
+                else if (current == 'form_total_1') resetBlock(block_1);
+                else if (current == 'form_total_2') resetBlock(block_2);
+                else if (current == 'form_total_3') resetBlock(block_3);
+                else if (current == 'form_total_4') resetBlock(block_4);
+                else if (current == 'form_total_5') resetBlock(block_5);
+                else if (current == 'form_total_6') resetBlock(block_6);
+                else if (current == 'form_total_7') resetBlock(block_7);
+                else if (current == 'form_total_8') resetBlock(block_8);
+                else if (current == 'form_total_9') resetBlock(block_9);
+                else if (current == 'form_total_10') resetBlock(block_10);
+                else if (current == 'form_total_11') resetBlock(block_11);
+            });
+
+            $('#id_user_type').change(function () {
+                showPro(this.checked);
+            });
+        });
+    })(jQuery);
+</script> 
+</div>
+</div>
+<footer class="footer"> </footer>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#newsletter-form').validate({
+            messages: {
+                'newsletter-email': {
+                    required: 'Champs requis',
+                    email: 'Merci d’entrer une adresse email valide'
+                }
+            }
+        });
+    });
+</script> 
+<script src="static/bourget_static/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script> 
+<script src="static/bourget_static/plugins/jquery.autocomplete/jquery.autocomplete.js" type="text/javascript"></script> 
+<script src="static/bourget_static/js/moment-with-locales.js" type="text/javascript"></script> 
+<script src="static/bourget_static/js/datepicker-fr-CH.js" type="text/javascript"></script> 
+<script src="static/bourget_static/plugins/jquery-validation-1.16.0/dist/jquery.validate.min.js" type="text/javascript"></script> 
+<script type="text/javascript" src="static/bourget_static/plugins/jquery-validation-1.16.0/src/localization/messages_fr.js"></script> 
+<script src="static/bourget_static/plugins/bootstrap-slider/js/bootstrap-slider.js" type="text/javascript"></script> 
+<script src="static/bourget_static/plugins/typerjs/typerjs2.js" type="text/javascript"></script> 
+<script src="static/bourget_static/plugins/jquery-confirm/dist/jquery-confirm.min.js" type="text/javascript"></script> 
+<script src="static/bourget_static/plugins/youtube_background/src/jquery.youtubebackground.js" type="text/javascript"></script> 
+<script src="static/bourget_static/js/app.js" type="text/javascript"></script> 
+<script src="static/bourget_static/js/simulator__home.js" type="text/javascript"></script> 
+<script type="text/javascript" src="static/bourget_static/plugins/PasswordWidget/pwdwidget.js"></script> 
+<script src="static/bourget_static/js/custom.js" type="text/javascript"></script> 
+<script src="static/bourget_static/js/card.js" type="text/javascript"></script> 
+<script src="static/bourget_static/js/jquery.card.js" type="text/javascript"></script> 
+<script src="static/bourget_static/js/jquery.payment.js" type="text/javascript"></script>
+<style>
+.async-hide { opacity: 0 !important} 
+</style>
+</body>
+</html>

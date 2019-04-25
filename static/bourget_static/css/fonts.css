@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css?family=Amiri|Raleway:400,700");
+@font-face {
+    font-family: 'Raleway-Regular';
+    src: url('../fonts/raleway/Raleway-Regular.ttf');
+}
+@font-face {
+    font-family: 'Raleway-Bold';
+    src: url('../fonts/raleway/Raleway-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Raleway-BoldItalic';
+    src: url('../fonts/raleway/Raleway-BoldItalic.ttf');
+}
+
+@font-face {
+    font-family: 'Raleway-ExtraBold';
+    src: url('../fonts/raleway/Raleway-ExtraBold.ttf');
+}
+
+@font-face {
+    font-family: 'Raleway-SemiBold';
+    src: url('../fonts/raleway/Raleway-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Raleway-SemiBoldItalic';
+    src: url('../fonts/raleway/Raleway-SemiBoldItalic.ttf');
+}
