@@ -85,18 +85,20 @@ button:hover {
               <p>
                 <input type="hidden" name="csrfmiddlewaretoken" value="dLRy4XwNvzD7jFyMjbsU2cz6bFIAlMWr">
               <h1 text-align= "center">Estimer le montant de votre zakat avec ce simulateur</h1>
-              <div class="text-block nissab-config clearfix"> <a class="pull-right faa-parent animated-hover" id="nissab-btn">Choisir les paramètres pour le calcul (Nissab et calendrier)</i></a> </div>
+                            <p text-align="center"> Ce simulateur vous donne une estimation de la Zakat que vous devez payé, il vous revient de vérifier si votre situation nécessite un conseil juridique</p>
+
+              <div class="text-block nissab-config clearfix"> <a class="pull-right faa-parent animated-hover" id="nissab-btn">=>Choisir les paramètres pour le calcul (Nissab et calendrier)</i></a> </div>
               <div class="bancaires-block" style="display: none" id="form_div_12">
                 <p class="total-info clearfix"> Paramètres </p>
                 <div class="clearfix simu__input-group">
                   <div class="col-md-7">
-                    <label for="id_seuil_imposition" class="label-text">Cacul du  nissab en vous basant sur l'or ou l'argent</label>
+                    <label for="id_seuil_imposition" class="label-text">Calcul du  nissab en vous basant sur l'or ou l'argent</label>
                   </div>
                   <div class="col-md-5">
                     <div class="l-wrapp-select"> <i class="icon ion-chevron-down"></i>
                       <select class="form-control mod--theme simu__input" id="id_seuil_imposition" name="seuil_imposition">
-                        <option value="275.000000">275 &#xE2;&#x82;&#xAC; Nissab Argent</option>
-                        <option selected="selected" value="3124.000000">3124 &#xE2;&#x82;&#xAC; Nissab Or</option>
+                        <option value="275.000000">275 € Nissab Argent</option>
+                        <option selected="selected" value="3124.000000">3124 € Nissab Or</option>
                       </select>
                     </div>
                   </div>
@@ -157,7 +159,7 @@ button:hover {
                 </div>
                 <div class="clearfix simu__input-group">
                   <div class="col-md-7">
-                    <label for="id_soldes_bancaires_autre" class="label-text">L'argent que vous avez à la banque (en dehors de ceux que vous avez dékà compté ci-dessus):</label>
+                    <label for="id_soldes_bancaires_autre" class="label-text">L'argent que vous avez à la banque (en dehors de ceux que vous avez déjà compté ci-dessus):</label>
                   </div>
                   <div class="col-md-5">
                     <div class="l-wrapp-input"> <span>&#x20AC;</span>
@@ -319,7 +321,7 @@ button:hover {
                   </div>
                 </div>
               </div>
-              
+
             </div>
              <div class="tab">
              <p>
@@ -337,7 +339,7 @@ button:hover {
                   &#x20AC;</span> </p>
                 <div class="clearfix simu__input-group">
                   <div class="col-md-7">
-                    <label for="id_pro_immo_placements" class="label-text">Montant des investissements, placements ou des prêts qui vous sont dûs;:</label>
+                    <label for="id_pro_immo_placements" class="label-text">Montant des investissements, placements ou des prêts qui vous sont dûs:</label>
                   </div>
                   <div class="col-md-5">
                     <div class="l-wrapp-input"> <span>&#x20AC;</span>
@@ -468,7 +470,7 @@ button:hover {
                   </div>
                 </div>
               </div>
-              <div class="clearfix simu__input-group">
+              <!-- <div class="clearfix simu__input-group">
                 <div class="col-md-7">
                   <label for="id_pro_dettes_depenses" class="label-text">Montant des dépenses récurrentes (loyers, charges):</label>
                 </div>
@@ -477,7 +479,7 @@ button:hover {
                     <input class="form-control mod--theme simu__input" type="text" id="id_pro_dettes_depenses" name="pro_dettes_depenses" value="0">
                   </div>
                 </div>
-              </div>
+              </div> -->
               <div id="errors_2032" style="display:none;" class="alert alert-danger text-center"></div>
               <div class="submit-wraper text-center">
                 <input id="id_montant_a_payer" type="hidden" name="montant_a_payer">
@@ -489,18 +491,18 @@ button:hover {
               <div style="float:right; width: 100%;
     text-align: right;">
               <div class="bancaires-block">
-                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Précédent</button>
+                <button type="button" id="nextBtn" onclick="nextPrev(1)">Suivant</button>
               </div>
               </div>
             </div>
             <!-- Circles which indicates the steps of the form: -->
-            <div style="text-align:center;margin-top:40px; display:none"> 
-            <span class="step"></span> 
-            <span class="step"></span> 
-            <span class="step"></span> 
+            <div style="text-align:center;margin-top:40px; display:none">
             <span class="step"></span>
-            <span class="step"></span> 
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
             <span class="step"></span>
             <span class="step"></span> </div>
           </form>
@@ -513,7 +515,6 @@ button:hover {
                 Pour un patrimoine personnel de : <span id="pat_perso_sum">0</span> et un patrimoine professionnel de : <span id="pat_pro_sum">0</span><br>
               </p>
               <br>
-              <p> Ce simulateur vous donne une estimation de la Zakat que vous devez payé, il vous revient de vérifier si votre situation nécessite un conseil juridique</p>
             </div>
           </div>
         </div>
@@ -538,11 +539,11 @@ function showTab(n) {
   if (n == (x.length - 1)) {
     document.getElementById("nextBtn").style.display = "none";
   } else {
-    document.getElementById("nextBtn").innerHTML = "Next";
+    document.getElementById("nextBtn").innerHTML = "Suivant";
   }
    if (n == (x.length - 1)) {
     document.getElementById("prevBtn").style.display = "none";
-  } 
+  }
   //... and run a function that will display the correct step indicator:
   fixStepIndicator(n)
 }
@@ -597,7 +598,7 @@ function fixStepIndicator(n) {
   //... and adds the "active" class on the current step:
   x[n].className += " active";
 }
-</script> 
+</script>
   <script type="text/javascript">
     $('body').addClass('account-page');
     $('.simu__input-group .form-control').on('focus', function (event) {
@@ -609,8 +610,8 @@ function fixStepIndicator(n) {
         event.preventDefault();
         $('#form_div_12').toggle('slow');
     })
-</script> 
-  <script type="text/javascript" src="static/bourget_static/js/simulator__form_submit.js"></script> 
+</script>
+  <script type="text/javascript" src="static/bourget_static/js/simulator__form_submit.js"></script>
   <script type="text/javascript">
     (function($) {
         var pro_fields = ['id_pro_treso_total',
@@ -825,10 +826,10 @@ function fixStepIndicator(n) {
             });
         });
     })(jQuery);
-</script> 
+</script>
 </div>
 </div>
-<footer class="footer"> </footer>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('#newsletter-form').validate({
@@ -840,26 +841,26 @@ function fixStepIndicator(n) {
             }
         });
     });
-</script> 
-<script src="static/bourget_static/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script> 
-<script src="static/bourget_static/plugins/jquery.autocomplete/jquery.autocomplete.js" type="text/javascript"></script> 
-<script src="static/bourget_static/js/moment-with-locales.js" type="text/javascript"></script> 
-<script src="static/bourget_static/js/datepicker-fr-CH.js" type="text/javascript"></script> 
-<script src="static/bourget_static/plugins/jquery-validation-1.16.0/dist/jquery.validate.min.js" type="text/javascript"></script> 
-<script type="text/javascript" src="static/bourget_static/plugins/jquery-validation-1.16.0/src/localization/messages_fr.js"></script> 
-<script src="static/bourget_static/plugins/bootstrap-slider/js/bootstrap-slider.js" type="text/javascript"></script> 
-<script src="static/bourget_static/plugins/typerjs/typerjs2.js" type="text/javascript"></script> 
-<script src="static/bourget_static/plugins/jquery-confirm/dist/jquery-confirm.min.js" type="text/javascript"></script> 
-<script src="static/bourget_static/plugins/youtube_background/src/jquery.youtubebackground.js" type="text/javascript"></script> 
-<script src="static/bourget_static/js/app.js" type="text/javascript"></script> 
-<script src="static/bourget_static/js/simulator__home.js" type="text/javascript"></script> 
-<script type="text/javascript" src="static/bourget_static/plugins/PasswordWidget/pwdwidget.js"></script> 
-<script src="static/bourget_static/js/custom.js" type="text/javascript"></script> 
-<script src="static/bourget_static/js/card.js" type="text/javascript"></script> 
-<script src="static/bourget_static/js/jquery.card.js" type="text/javascript"></script> 
+</script>
+<script src="static/bourget_static/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="static/bourget_static/plugins/jquery.autocomplete/jquery.autocomplete.js" type="text/javascript"></script>
+<script src="static/bourget_static/js/moment-with-locales.js" type="text/javascript"></script>
+<script src="static/bourget_static/js/datepicker-fr-CH.js" type="text/javascript"></script>
+<script src="static/bourget_static/plugins/jquery-validation-1.16.0/dist/jquery.validate.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="static/bourget_static/plugins/jquery-validation-1.16.0/src/localization/messages_fr.js"></script>
+<script src="static/bourget_static/plugins/bootstrap-slider/js/bootstrap-slider.js" type="text/javascript"></script>
+<script src="static/bourget_static/plugins/typerjs/typerjs2.js" type="text/javascript"></script>
+<script src="static/bourget_static/plugins/jquery-confirm/dist/jquery-confirm.min.js" type="text/javascript"></script>
+<script src="static/bourget_static/plugins/youtube_background/src/jquery.youtubebackground.js" type="text/javascript"></script>
+<script src="static/bourget_static/js/app.js" type="text/javascript"></script>
+<script src="static/bourget_static/js/simulator__home.js" type="text/javascript"></script>
+<script type="text/javascript" src="static/bourget_static/plugins/PasswordWidget/pwdwidget.js"></script>
+<script src="static/bourget_static/js/custom.js" type="text/javascript"></script>
+<script src="static/bourget_static/js/card.js" type="text/javascript"></script>
+<script src="static/bourget_static/js/jquery.card.js" type="text/javascript"></script>
 <script src="static/bourget_static/js/jquery.payment.js" type="text/javascript"></script>
 <style>
-.async-hide { opacity: 0 !important} 
+.async-hide { opacity: 0 !important}
 </style>
 </body>
 </html>
